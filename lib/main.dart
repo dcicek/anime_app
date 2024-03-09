@@ -1,7 +1,7 @@
 import 'package:anime_app/src/data/datasources/service/service.dart';
 import 'package:anime_app/src/data/repositories/dog_service_repo.dart';
+import 'package:anime_app/src/presentation/bloc/anime_bloc/anime_bloc.dart';
 import 'package:anime_app/src/presentation/bloc/bloc.dart';
-import 'package:anime_app/src/presentation/bloc/dog_bloc/dog_bloc_bloc.dart';
 import 'package:anime_app/src/presentation/views/home.dart';
 import 'package:anime_app/src/presentation/views/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Sizer(builder: (context, orientation, deviceType) {
       return BlocProvider(
-        create: (context) => DogBloc(DogRepo(service: Services())),
+        create: (context) => AnimeBloc(DogRepo(service: Services())),
         child: MaterialApp(
           routes: {
             '/': (context) => const SplashScreen(),

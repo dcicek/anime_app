@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 class CustomAlertDialog {
-  static getAlert(BuildContext context, Widget widget) {
+  static getAlert(BuildContext context, Widget widget,
+      {required double height}) {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -13,7 +14,7 @@ class CustomAlertDialog {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
           actions: [
             SizedBox(
-              height: 60.h,
+              height: height,
               child: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),

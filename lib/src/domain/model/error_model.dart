@@ -4,40 +4,46 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 class ErrorModel extends Equatable {
-  final String status;
+  final int status;
+  final String type;
   final String message;
-  final int code;
+  final String? error;
   const ErrorModel({
     required this.status,
+    required this.type,
     required this.message,
-    required this.code,
+    required this.error,
   });
 
   ErrorModel copyWith({
-    String? status,
+    int? status,
+    String? type,
     String? message,
-    int? code,
+    String? error,
   }) {
     return ErrorModel(
       status: status ?? this.status,
+      type: type ?? this.type,
       message: message ?? this.message,
-      code: code ?? this.code,
+      error: error ?? this.error,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'status': status,
+      'type': type,
       'message': message,
-      'code': code,
+      'error': error,
     };
   }
 
   factory ErrorModel.fromMap(Map<String, dynamic> map) {
     return ErrorModel(
-      status: map['status'] as String,
+      status: map['status'] as int,
+      type: map['type'] as String,
       message: map['message'] as String,
-      code: map['code'] as int,
+      error: map['error'] != null ? map['error'] as String : null,
     );
   }
 
@@ -50,5 +56,5 @@ class ErrorModel extends Equatable {
   bool get stringify => true;
 
   @override
-  List<Object> get props => [status, message, code];
+  List<Object> get props => [status, type, message, error ?? ""];
 }

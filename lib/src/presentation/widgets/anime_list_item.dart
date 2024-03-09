@@ -6,7 +6,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class AnimeListItem extends StatelessWidget {
-  const AnimeListItem({super.key});
+  final String image;
+  final String title;
+  final double rate;
+  const AnimeListItem(
+      {super.key,
+      required this.image,
+      required this.title,
+      required this.rate});
 
   @override
   Widget build(BuildContext context) {
@@ -28,19 +35,19 @@ class AnimeListItem extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                  flex: 2,
+                  flex: 1,
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
-                    imageUrl:
-                        "https://www.shutterstock.com/image-vector/young-man-anime-style-character-600nw-2313503433.jpg",
+                    imageUrl: image,
                   ),
                 ),
                 Expanded(
                   child: Column(
                     children: [
                       Text(
-                        "Attack on Titan",
-                        maxLines: 2,
+                        title,
+                        maxLines: 5,
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             overflow: TextOverflow.clip,
                             color: ThemeColors.themeColor,
@@ -55,7 +62,7 @@ class AnimeListItem extends StatelessWidget {
                             color: ThemeColors.rateStarColor,
                           ),
                           Text(
-                            "9.15",
+                            rate.toString(),
                             style: TextStyle(
                                 color: ThemeColors.themeColor,
                                 fontWeight: FontWeight.w500,

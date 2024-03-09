@@ -42,7 +42,8 @@ class AnimeDetailWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: GestureDetector(
               onTap: () {
-                CustomAlertDialog.getAlert(context, SynopsisWidget());
+                CustomAlertDialog.getAlert(context, SynopsisWidget(),
+                    height: 60.h);
               },
               child: Text(
                 "Synopsis",
@@ -59,7 +60,8 @@ class AnimeDetailWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: GestureDetector(
               onTap: () {
-                CustomAlertDialog.getAlert(context, CharacterWidget());
+                CustomAlertDialog.getAlert(context, CharacterWidget(),
+                    height: 60.h);
               },
               child: Text(
                 "Characters",

@@ -1,3 +1,3 @@
 class ApiConnection {
-  static String apiInfo = "https://dog.ceo/api/";
+  static String apiInfo = "https://api.jikan.moe/v4/";
 }
