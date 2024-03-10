@@ -1,5 +1,5 @@
 import 'package:anime_app/src/data/datasources/service/service.dart';
-import 'package:anime_app/src/data/repositories/dog_service_repo.dart';
+import 'package:anime_app/src/data/repositories/anime_service_repo.dart';
 import 'package:anime_app/src/presentation/bloc/anime_bloc/anime_bloc.dart';
 import 'package:anime_app/src/presentation/bloc/bloc.dart';
 import 'package:anime_app/src/presentation/views/home.dart';

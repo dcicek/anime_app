@@ -1,19 +1,16 @@
 import 'package:anime_app/src/config/theme/colors.dart';
 import 'package:anime_app/src/config/theme/font_property.dart';
+import 'package:anime_app/src/domain/model/anime_model/anime_model.dart';
+import 'package:anime_app/src/presentation/bloc/anime_bloc/anime_bloc.dart';
 import 'package:anime_app/src/presentation/widgets/anime_detail.dart';
 import 'package:anime_app/src/presentation/widgets/bottom_sheet.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AnimeListItem extends StatelessWidget {
-  final String image;
-  final String title;
-  final double rate;
-  const AnimeListItem(
-      {super.key,
-      required this.image,
-      required this.title,
-      required this.rate});
+  final Data anime;
+  const AnimeListItem({super.key, required this.anime});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +18,7 @@ class AnimeListItem extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: GestureDetector(
         onTap: () {
+          context.read<AnimeBloc>().add(SelectAnime(selectedAnime: anime));
           CustomBottomSheet.settingsBottomSheet(
               context, ThemeColors.themeColor, const AnimeDetailWidget());
         },
@@ -38,14 +36,14 @@ class AnimeListItem extends StatelessWidget {
                   flex: 1,
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
-                    imageUrl: image,
+                    imageUrl: anime.images!.jpg!.imageUrl!,
                   ),
                 ),
                 Expanded(
                   child: Column(
                     children: [
                       Text(
-                        title,
+                        anime.title.toString(),
                         maxLines: 5,
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -62,7 +60,7 @@ class AnimeListItem extends StatelessWidget {
                             color: ThemeColors.rateStarColor,
                           ),
                           Text(
-                            rate.toString(),
+                            anime.score.toString(),
                             style: TextStyle(
                                 color: ThemeColors.themeColor,
                                 fontWeight: FontWeight.w500,

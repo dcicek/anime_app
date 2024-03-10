@@ -37,10 +37,10 @@ class _HomePageState extends State<HomePage> {
       listener: (context, state) {
         if (state is Loading) {
           CustomAlertDialog.getAlert(context, const CustomProgress(),
-              height: 30.h);
+              height: 10.h);
         } else if (state is Failed) {
           //CustomAlertDialog.getAlert(context, );
-        } else if (state is AnimeLoaded) {
+        } else if (state is AnimeLoaded || state is AnimeCharLoaded) {
           Navigator.pop(context);
         }
       },
@@ -50,11 +50,7 @@ class _HomePageState extends State<HomePage> {
             controller: controller,
             itemCount: state.animeList.data!.length,
             itemBuilder: (context, index) {
-              return AnimeListItem(
-                  image: state.animeList.data![index].images!.jpg!.imageUrl
-                      .toString(),
-                  title: state.animeList.data![index].title.toString(),
-                  rate: state.animeList.data![index].score!.toDouble());
+              return AnimeListItem(anime: state.animeList.data![index]);
             },
           );
         },

@@ -18,7 +18,7 @@ class CustomAlertDialog {
               child: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: widget,
+                  child: Center(child: widget),
                 ),
               ),
             )

@@ -722,45 +722,45 @@ class Themes {
 }
 
 class Genres {
-  int? mal_id;
+  int? malId;
   String? type;
-  String? namex;
+  String? name;
   String? url;
   Genres({
-    this.mal_id,
+    this.malId,
     this.type,
-    this.namex,
+    this.name,
     this.url,
   });
 
   Genres copyWith({
-    int? mal_id,
+    int? malId,
     String? type,
-    String? namex,
+    String? name,
     String? url,
   }) {
     return Genres(
-      mal_id: mal_id ?? this.mal_id,
+      malId: malId ?? this.malId,
       type: type ?? this.type,
-      namex: namex ?? this.namex,
+      name: name ?? this.name,
       url: url ?? this.url,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'mal_id': mal_id,
+      'mal_id': malId,
       'type': type,
-      'namex': namex,
+      'name': name,
       'url': url,
     };
   }
 
   factory Genres.fromMap(Map<String, dynamic> map) {
     return Genres(
-      mal_id: map['mal_id'] != null ? map['mal_id'] as int : null,
+      malId: map['mal_id'] != null ? map['mal_id'] as int : null,
       type: map['type'] != null ? map['type'] as String : null,
-      namex: map['namex'] != null ? map['namex'] as String : null,
+      name: map['name'] != null ? map['name'] as String : null,
       url: map['url'] != null ? map['url'] as String : null,
     );
   }
@@ -772,22 +772,22 @@ class Genres {
 
   @override
   String toString() {
-    return 'Genres(mal_id: $mal_id, type: $type, namex: $namex, url: $url)';
+    return 'Genres(mal_id: $malId, type: $type, namex: $name, url: $url)';
   }
 
   @override
   bool operator ==(covariant Genres other) {
     if (identical(this, other)) return true;
 
-    return other.mal_id == mal_id &&
+    return other.malId == malId &&
         other.type == type &&
-        other.namex == namex &&
+        other.name == name &&
         other.url == url;
   }
 
   @override
   int get hashCode {
-    return mal_id.hashCode ^ type.hashCode ^ namex.hashCode ^ url.hashCode;
+    return malId.hashCode ^ type.hashCode ^ name.hashCode ^ url.hashCode;
   }
 }
 
@@ -933,7 +933,7 @@ class Licensors {
 
 class Images {
   Jpg? jpg;
-  Jpg? webp;
+  WebP? webp;
   Images({
     this.jpg,
     this.webp,
@@ -941,7 +941,7 @@ class Images {
 
   Images copyWith({
     Jpg? jpg,
-    Jpg? webp,
+    WebP? webp,
   }) {
     return Images(
       jpg: jpg ?? this.jpg,
@@ -962,7 +962,7 @@ class Images {
           ? Jpg.fromMap(map['jpg'] as Map<String, dynamic>)
           : null,
       webp: map['webp'] != null
-          ? Jpg.fromMap(map['webp'] as Map<String, dynamic>)
+          ? WebP.fromMap(map['webp'] as Map<String, dynamic>)
           : null,
     );
   }
@@ -984,6 +984,69 @@ class Images {
 
   @override
   int get hashCode => jpg.hashCode ^ webp.hashCode;
+}
+
+class WebP {
+  String? imageUrl;
+  String? smallImageUrl;
+  String? largeImageUrl;
+  WebP({
+    this.imageUrl,
+    this.smallImageUrl,
+    this.largeImageUrl,
+  });
+
+  WebP copyWith({
+    String? imageUrl,
+    String? smallImageUrl,
+    String? largeImageUrl,
+  }) {
+    return WebP(
+      imageUrl: imageUrl ?? this.imageUrl,
+      smallImageUrl: smallImageUrl ?? this.smallImageUrl,
+      largeImageUrl: largeImageUrl ?? this.largeImageUrl,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'imageUrl': imageUrl,
+      'smallImageUrl': smallImageUrl,
+      'largeImageUrl': largeImageUrl,
+    };
+  }
+
+  factory WebP.fromMap(Map<String, dynamic> map) {
+    return WebP(
+      imageUrl: map['imageUrl'] != null ? map['imageUrl'] as String : null,
+      smallImageUrl:
+          map['smallImageUrl'] != null ? map['smallImageUrl'] as String : null,
+      largeImageUrl:
+          map['largeImageUrl'] != null ? map['largeImageUrl'] as String : null,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory WebP.fromJson(String source) =>
+      WebP.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  String toString() =>
+      'WebP(imageUrl: $imageUrl, smallImageUrl: $smallImageUrl, largeImageUrl: $largeImageUrl)';
+
+  @override
+  bool operator ==(covariant WebP other) {
+    if (identical(this, other)) return true;
+
+    return other.imageUrl == imageUrl &&
+        other.smallImageUrl == smallImageUrl &&
+        other.largeImageUrl == largeImageUrl;
+  }
+
+  @override
+  int get hashCode =>
+      imageUrl.hashCode ^ smallImageUrl.hashCode ^ largeImageUrl.hashCode;
 }
 
 class Jpg {

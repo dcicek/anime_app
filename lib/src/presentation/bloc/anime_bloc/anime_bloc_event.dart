@@ -6,3 +6,12 @@ abstract class AnimeEvent {}
 class GetAnimeList extends AnimeEvent {
   GetAnimeList();
 }
+
+class SelectAnime extends AnimeEvent {
+  final Data selectedAnime;
+  SelectAnime({required this.selectedAnime});
+}
+
+class GetCharacterList extends AnimeEvent {
+  GetCharacterList();
+}

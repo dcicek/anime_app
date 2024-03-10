@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:anime_app/src/data/datasources/service/service.dart';
 import 'package:anime_app/src/domain/model/anime_model/anime_model.dart';
+import 'package:anime_app/src/domain/model/character_model.dart';
 import 'package:anime_app/src/domain/model/error_model.dart';
 import 'package:dartz/dartz.dart';
 
@@ -19,8 +20,20 @@ class DogRepo {
       return response;
     } catch (e) {
       log(e.toString());
-      return const Left(ErrorModel(
-          error: 'Bir hata oluştu', message: '', status: 500, type: ''));
+      return Left(
+          ErrorModel(error: '', message: e.toString(), status: 500, type: ''));
+    }
+  }
+
+  Future<Either<ErrorModel, CharData>> getCharList(int id) async {
+    try {
+      final response = await service.getCharList(id);
+
+      return response;
+    } catch (e) {
+      log(e.toString());
+      return Left(
+          ErrorModel(error: '', message: e.toString(), status: 500, type: ''));
     }
   }
 }
