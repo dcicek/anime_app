@@ -138,20 +138,22 @@ class AnimeDetailWidget extends StatelessWidget {
                           fontSize: FontProperty.animeSubTitle,
                         ),
                       ),
-                      ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: state.selectedAnime!.genres!.length,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return Text(
-                            "${state.selectedAnime!.genres![index].name!}, ",
-                            style: TextStyle(
-                              color: ThemeColors.bottomSheetTitleColor,
-                              fontSize: FontProperty.animeSubTitle,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          );
-                        },
+                      Expanded(
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: state.selectedAnime!.genres!.length,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return Text(
+                              "${state.selectedAnime!.genres![index].name!}, ",
+                              style: TextStyle(
+                                color: ThemeColors.bottomSheetTitleColor,
+                                fontSize: FontProperty.animeSubTitle,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ],
                   ),

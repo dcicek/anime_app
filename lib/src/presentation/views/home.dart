@@ -3,6 +3,7 @@ import 'package:anime_app/src/presentation/bloc/anime_bloc/anime_bloc.dart';
 import 'package:anime_app/src/presentation/widgets/anime_list_item.dart';
 import 'package:anime_app/src/presentation/widgets/custom_alert_dialog.dart';
 import 'package:anime_app/src/presentation/widgets/custom_progress.dart';
+import 'package:anime_app/src/presentation/widgets/fail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
@@ -39,7 +40,9 @@ class _HomePageState extends State<HomePage> {
           CustomAlertDialog.getAlert(context, const CustomProgress(),
               height: 10.h);
         } else if (state is Failed) {
-          //CustomAlertDialog.getAlert(context, );
+          CustomAlertDialog.getAlert(
+              context, FailWidget(message: state.error.message),
+              height: 20.h);
         } else if (state is AnimeLoaded || state is AnimeCharLoaded) {
           Navigator.pop(context);
         }

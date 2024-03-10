@@ -13,29 +13,43 @@ class AnimeBloc extends Bloc<AnimeEvent, AnimeState> {
   DogRepo repo;
   AnimeBloc(this.repo)
       : super(AnimeInitial(
-            AnimeModel(data: [], pagination: Pagination(currentPage: 0)),
+            AnimeModel(
+                data: [],
+                pagination: Pagination(currentPage: 0, hasNextPage: true)),
             null)) {
     AnimeModel oldAnimeModel;
     on<GetAnimeList>((event, emit) async {
       try {
         emit(Loading(state.animeList, state.selectedAnime));
-        final response = await repo
-            .getAnimeList(state.animeList.pagination!.currentPage! + 1);
+        if (state.animeList.pagination!.hasNextPage!) {
+          final response = await repo
+              .getAnimeList(state.animeList.pagination!.currentPage! + 1);
 
-        response.fold((l) {
+          response.fold((l) {
+            emit(Failed(
+              state.animeList,
+              null,
+              error: l,
+            ));
+          }, (r) {
+            oldAnimeModel = state.animeList;
+            AnimeModel temp = r;
+
+            temp.data = oldAnimeModel.data! + r.data!;
+
+            emit(AnimeLoaded(temp, state.selectedAnime));
+          });
+        } else {
           emit(Failed(
             state.animeList,
             null,
-            error: l,
+            error: const ErrorModel(
+                message: "Tüm kayıtlar listelenmiştir.",
+                status: 500,
+                type: '',
+                error: ''),
           ));
-        }, (r) {
-          oldAnimeModel = state.animeList;
-          AnimeModel temp = r;
-
-          temp.data = oldAnimeModel.data! + r.data!;
-
-          emit(AnimeLoaded(temp, state.selectedAnime));
-        });
+        }
       } catch (e) {
         log(e.toString());
 

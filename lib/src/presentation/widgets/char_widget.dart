@@ -1,5 +1,4 @@
 import 'package:anime_app/src/presentation/bloc/anime_bloc/anime_bloc.dart';
-import 'package:anime_app/src/presentation/widgets/custom_progress.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,8 +20,8 @@ class CharacterWidget extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
-                        Image.network(
-                          state
+                        CachedNetworkImage(
+                          imageUrl: state
                               .char.data[index].character.images.jpg!.imageUrl!,
                           width: 25.w,
                         ),
