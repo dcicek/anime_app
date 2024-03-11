@@ -22,7 +22,7 @@ class CharacterWidget extends StatelessWidget {
                       children: [
                         CachedNetworkImage(
                           imageUrl: state
-                              .char.data[index].character.images.jpg!.imageUrl!,
+                              .char.data[index].character.images.jpg.imageUrl!,
                           width: 25.w,
                         ),
                         Text(state.char.data[index].character.name),

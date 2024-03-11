@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:anime_app/src/data/datasources/service/service.dart';
 import 'package:anime_app/src/domain/model/anime_model/anime_model.dart';
-import 'package:anime_app/src/domain/model/character_model.dart';
+import 'package:anime_app/src/domain/model/character_model/char_data_model.dart';
 import 'package:anime_app/src/domain/model/error_model.dart';
 import 'package:dartz/dartz.dart';
 

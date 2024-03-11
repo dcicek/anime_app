@@ -1,26 +1,42 @@
+import 'dart:developer';
+
 import 'package:anime_app/src/presentation/bloc/anime_bloc/anime_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NativeBackground {
-  final methodChannel = const MethodChannel('com.example.anime_app');
+  static const methodChannel = MethodChannel('com.example.anime_app');
 
-  invokeGetAnimeList() {
-    methodChannel.invokeMethod('getAnimeList');
+  static invokeGetAnimeList() async {
+    String a = await methodChannel.invokeMethod('getAnimeList');
+    print(a);
   }
 
-  invokeGetCharacterList() {
-    methodChannel.invokeMethod('getAnimeList');
+  static invokeGetCharacterList() async {
+    await methodChannel.invokeMethod('getCharacterList');
   }
 
-  handlePlatformChannelMethods(BuildContext context) async {
-    methodChannel.setMethodCallHandler((methodCall) async {
-      if (methodCall.method == "getAnimeList") {
-        context.read<AnimeBloc>().add(GetAnimeList());
-      } else if (methodChannel.name == "getCharacterList") {
-        context.read<AnimeBloc>().add(GetCharacterList());
-      }
-    });
+  static void handleCityChanges() {
+    const EventChannel _stream = EventChannel('com.example.anime_app');
+    _stream.receiveBroadcastStream().listen(
+      (data) {
+        print(data);
+      },
+    );
+  }
+
+  static handlePlatformChannelMethods(BuildContext context) async {
+    try {
+      methodChannel.setMethodCallHandler((methodCall) async {
+        if (methodCall.method == "getAnimeList") {
+          context.read<AnimeBloc>().add(GetAnimeList());
+        } else if (methodCall.method == "getCharacterList") {
+          context.read<AnimeBloc>().add(GetCharacterList());
+        }
+      });
+    } catch (e) {
+      log(e.toString());
+    }
   }
 }

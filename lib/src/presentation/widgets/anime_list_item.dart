@@ -1,6 +1,7 @@
 import 'package:anime_app/src/config/theme/colors.dart';
 import 'package:anime_app/src/config/theme/font_property.dart';
 import 'package:anime_app/src/domain/model/anime_model/anime_model.dart';
+import 'package:anime_app/src/domain/model/anime_model/data_model.dart';
 import 'package:anime_app/src/presentation/bloc/anime_bloc/anime_bloc.dart';
 import 'package:anime_app/src/presentation/widgets/anime_detail.dart';
 import 'package:anime_app/src/presentation/widgets/bottom_sheet.dart';
@@ -36,7 +37,7 @@ class AnimeListItem extends StatelessWidget {
                   flex: 1,
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
-                    imageUrl: anime.images!.jpg!.imageUrl!,
+                    imageUrl: anime.images.jpg.imageUrl!,
                   ),
                 ),
                 Expanded(

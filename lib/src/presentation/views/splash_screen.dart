@@ -3,8 +3,11 @@ import 'dart:math';
 
 import 'package:anime_app/src/config/theme/colors.dart';
 import 'package:anime_app/src/config/theme/font_property.dart';
+import 'package:anime_app/src/data/nativemethods/native_methods.dart';
+import 'package:anime_app/src/presentation/bloc/anime_bloc/anime_bloc.dart';
 import 'package:anime_app/src/utils/public_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -40,8 +43,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //Native dinlenmeye başlıyor.
+    // NativeBackground.handlePlatformChannelMethods(context);
+    //NativeBackground.handleCityChanges();
     //Background için rastgele sayı üretilip ona göre bir bg seçiliyor.
     randomNumber = PublicFunc.randomGenerate();
+    context.read<AnimeBloc>().add(GetAnimeList());
     return Scaffold(
       body: Stack(
         alignment: Alignment.bottomCenter,

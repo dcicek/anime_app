@@ -27,14 +27,14 @@ class AnimeDetailWidget extends StatelessWidget {
                   borderRadius: const BorderRadius.all(Radius.circular(15.0)),
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
-                    imageUrl: state.selectedAnime!.images!.jpg!.imageUrl!,
+                    imageUrl: state.selectedAnime!.images.jpg.imageUrl!,
                   ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Text(
-                  state.selectedAnime!.title!,
+                  state.selectedAnime!.title,
                   style: TextStyle(
                       color: ThemeColors.bottomSheetTitleColor,
                       fontSize: FontProperty.animeTitleSize,
@@ -141,11 +141,11 @@ class AnimeDetailWidget extends StatelessWidget {
                       Expanded(
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: state.selectedAnime!.genres!.length,
+                          itemCount: state.selectedAnime!.genres.length,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return Text(
-                              "${state.selectedAnime!.genres![index].name!}, ",
+                              "${state.selectedAnime!.genres[index].name}, ",
                               style: TextStyle(
                                 color: ThemeColors.bottomSheetTitleColor,
                                 fontSize: FontProperty.animeSubTitle,

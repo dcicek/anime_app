@@ -2,7 +2,10 @@ import 'dart:developer';
 
 import 'package:anime_app/src/data/repositories/anime_service_repo.dart';
 import 'package:anime_app/src/domain/model/anime_model/anime_model.dart';
-import 'package:anime_app/src/domain/model/character_model.dart';
+import 'package:anime_app/src/domain/model/anime_model/data_model.dart';
+import 'package:anime_app/src/domain/model/anime_model/items_model.dart';
+import 'package:anime_app/src/domain/model/anime_model/pagination_model.dart';
+import 'package:anime_app/src/domain/model/character_model/char_data_model.dart';
 import 'package:anime_app/src/domain/model/error_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,16 +17,20 @@ class AnimeBloc extends Bloc<AnimeEvent, AnimeState> {
   AnimeBloc(this.repo)
       : super(AnimeInitial(
             AnimeModel(
-                data: [],
-                pagination: Pagination(currentPage: 0, hasNextPage: true)),
+                data: const [],
+                pagination: const Pagination(
+                    currentPage: 0,
+                    hasNextPage: true,
+                    items: Items(count: 0, perPage: 0, total: 0),
+                    lastVisiblePage: 0)),
             null)) {
     AnimeModel oldAnimeModel;
     on<GetAnimeList>((event, emit) async {
       try {
         emit(Loading(state.animeList, state.selectedAnime));
-        if (state.animeList.pagination!.hasNextPage!) {
+        if (state.animeList.pagination.hasNextPage) {
           final response = await repo
-              .getAnimeList(state.animeList.pagination!.currentPage! + 1);
+              .getAnimeList(state.animeList.pagination.currentPage + 1);
 
           response.fold((l) {
             emit(Failed(
@@ -35,7 +42,7 @@ class AnimeBloc extends Bloc<AnimeEvent, AnimeState> {
             oldAnimeModel = state.animeList;
             AnimeModel temp = r;
 
-            temp.data = oldAnimeModel.data! + r.data!;
+            temp.data = oldAnimeModel.data + r.data;
 
             emit(AnimeLoaded(temp, state.selectedAnime));
           });
@@ -79,7 +86,7 @@ class AnimeBloc extends Bloc<AnimeEvent, AnimeState> {
     on<GetCharacterList>((event, emit) async {
       try {
         emit(Loading(state.animeList, state.selectedAnime));
-        final response = await repo.getCharList(state.selectedAnime!.malId!);
+        final response = await repo.getCharList(state.selectedAnime!.malId);
 
         response.fold((l) {
           emit(Failed(
