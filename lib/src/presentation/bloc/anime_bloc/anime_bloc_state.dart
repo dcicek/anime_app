@@ -1,39 +1,44 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'anime_bloc.dart';
 
-abstract class AnimeState {
+abstract class AnimeState extends Equatable {
   final AnimeModel animeList;
   final Data? selectedAnime;
-  AnimeState(this.animeList, this.selectedAnime);
+  const AnimeState(this.animeList, this.selectedAnime);
+
+  @override
   List<Object> get props => [animeList, selectedAnime ?? Object()];
 }
 
 class Loading extends AnimeState {
-  Loading(super.animeList, super.selectedAnime);
+  const Loading(super.animeList, super.selectedAnime);
 }
 
 class AnimeInitial extends AnimeState {
-  AnimeInitial(super.animeList, super.selectedAnime);
+  const AnimeInitial(super.animeList, super.selectedAnime);
 }
 
 class AnimeLoaded extends AnimeState {
-  AnimeLoaded(super.animeList, super.selectedAnime);
+  const AnimeLoaded(super.animeList, super.selectedAnime);
 }
 
 class AnimeSelected extends AnimeState {
-  AnimeSelected(super.animeList, super.selectedAnime);
+  const AnimeSelected(super.animeList, super.selectedAnime);
 }
 
 class AnimeCharLoaded extends AnimeState {
   final CharData char;
-  AnimeCharLoaded(super.animeList, super.selectedAnime, {required this.char});
+  const AnimeCharLoaded(super.animeList, super.selectedAnime,
+      {required this.char});
 
+  @override
   List<Object> get props => [char];
 }
 
 class Failed extends AnimeState {
   final ErrorModel error;
-  Failed(super.animeList, super.selectedAnime, {required this.error});
+  const Failed(super.animeList, super.selectedAnime, {required this.error});
 
+  @override
   List<Object> get props => [error];
 }

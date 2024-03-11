@@ -7,6 +7,7 @@ import 'package:anime_app/src/domain/model/anime_model/items_model.dart';
 import 'package:anime_app/src/domain/model/anime_model/pagination_model.dart';
 import 'package:anime_app/src/domain/model/character_model/char_data_model.dart';
 import 'package:anime_app/src/domain/model/error_model.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'anime_bloc_state.dart';
