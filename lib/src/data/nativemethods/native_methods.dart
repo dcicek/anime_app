@@ -21,10 +21,4 @@ class NativeBackground {
       log(e.toString());
     }
   }
-
-  static deneme() {
-    methodChannel.setMethodCallHandler((methodCall) async {
-      print("GELDİ");
-    });
-  }
 }

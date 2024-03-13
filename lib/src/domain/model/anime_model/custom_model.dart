@@ -4,25 +4,25 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 class CustomModel extends Equatable {
-  final int? mal_id;
+  final int? malId;
   final String? type;
   final String? name;
   final String? url;
   const CustomModel({
-    this.mal_id,
+    this.malId,
     this.type,
     this.name,
     this.url,
   });
 
   CustomModel copyWith({
-    int? mal_id,
+    int? malId,
     String? type,
     String? name,
     String? url,
   }) {
     return CustomModel(
-      mal_id: mal_id ?? this.mal_id,
+      malId: malId ?? this.malId,
       type: type ?? this.type,
       name: name ?? this.name,
       url: url ?? this.url,
@@ -31,7 +31,7 @@ class CustomModel extends Equatable {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'mal_id': mal_id,
+      'mal_id': malId,
       'type': type,
       'name': name,
       'url': url,
@@ -40,7 +40,7 @@ class CustomModel extends Equatable {
 
   factory CustomModel.fromMap(Map<String, dynamic> map) {
     return CustomModel(
-      mal_id: map['mal_id'] != null ? map['mal_id'] as int : null,
+      malId: map['mal_id'] != null ? map['mal_id'] as int : null,
       type: map['type'] != null ? map['type'] as String : null,
       name: map['name'] != null ? map['name'] as String : null,
       url: map['url'] != null ? map['url'] as String : null,
@@ -57,5 +57,5 @@ class CustomModel extends Equatable {
 
   @override
   List<Object> get props =>
-      [mal_id ?? Object(), type ?? Object(), name ?? Object(), url ?? Object()];
+      [malId ?? Object(), type ?? Object(), name ?? Object(), url ?? Object()];
 }

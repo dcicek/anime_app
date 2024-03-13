@@ -1,6 +1,5 @@
 import 'package:anime_app/src/config/theme/colors.dart';
 import 'package:anime_app/src/config/theme/font_property.dart';
-import 'package:anime_app/src/domain/model/anime_model/anime_model.dart';
 import 'package:anime_app/src/domain/model/anime_model/data_model.dart';
 import 'package:anime_app/src/presentation/bloc/anime_bloc/anime_bloc.dart';
 import 'package:anime_app/src/presentation/widgets/anime_detail.dart';
