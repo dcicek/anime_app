@@ -294,7 +294,7 @@ class Data extends Equatable {
       images,
       trailer,
       approved,
-      titles,
+      ...titles,
       title,
       titleEnglish ?? Object(),
       titleJapanese ?? Object(),
@@ -317,13 +317,13 @@ class Data extends Equatable {
       season ?? Object(),
       year ?? Object(),
       broadcast ?? Object(),
-      producers,
-      licensors,
-      studios,
-      genres,
+      ...producers,
+      ...licensors,
+      ...studios,
+      ...genres,
       explicitGenres ?? Object(),
-      themes,
-      demographics,
+      ...themes,
+      ...demographics,
     ];
   }
 }

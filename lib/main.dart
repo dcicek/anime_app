@@ -1,5 +1,4 @@
 import 'package:anime_app/src/data/datasources/service/service.dart';
-import 'package:anime_app/src/data/nativemethods/native_methods.dart';
 import 'package:anime_app/src/data/repositories/anime_service_repo.dart';
 import 'package:anime_app/src/presentation/bloc/anime_bloc/anime_bloc.dart';
 import 'package:anime_app/src/presentation/bloc/bloc.dart';
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Sizer(builder: (context, orientation, deviceType) {
       return BlocProvider(
-        create: (context) => AnimeBloc(DogRepo(service: Services())),
+        create: (context) => AnimeBloc(AnimeRepo(service: Services())),
         child: MaterialApp(
           routes: {
             '/': (context) => const SplashScreen(),

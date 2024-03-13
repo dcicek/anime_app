@@ -14,7 +14,7 @@ part 'anime_bloc_state.dart';
 part 'anime_bloc_event.dart';
 
 class AnimeBloc extends Bloc<AnimeEvent, AnimeState> {
-  DogRepo repo;
+  AnimeRepo repo;
   AnimeBloc(this.repo)
       : super(AnimeInitial(
             AnimeModel(

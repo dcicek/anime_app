@@ -7,9 +7,9 @@ import 'package:anime_app/src/domain/model/character_model/char_data_model.dart'
 import 'package:anime_app/src/domain/model/error_model.dart';
 import 'package:dartz/dartz.dart';
 
-class DogRepo {
+class AnimeRepo {
   Services service;
-  DogRepo({
+  AnimeRepo({
     required this.service,
   });
 

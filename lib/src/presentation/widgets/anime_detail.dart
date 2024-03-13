@@ -1,5 +1,6 @@
 import 'package:anime_app/src/config/theme/colors.dart';
 import 'package:anime_app/src/config/theme/font_property.dart';
+import 'package:anime_app/src/data/nativemethods/native_methods.dart';
 import 'package:anime_app/src/presentation/bloc/anime_bloc/anime_bloc.dart';
 import 'package:anime_app/src/presentation/widgets/char_widget.dart';
 import 'package:anime_app/src/presentation/widgets/custom_alert_dialog.dart';
@@ -66,7 +67,9 @@ class AnimeDetailWidget extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: GestureDetector(
                   onTap: () {
-                    context.read<AnimeBloc>().add(GetCharacterList());
+                    //Karakterler listeleniyor
+                    NativeBackground.handlePlatformChannelMethods(
+                        context, "getCharacterList");
                     CustomAlertDialog.getAlert(context, const CharacterWidget(),
                         height: 60.h);
                   },

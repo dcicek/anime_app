@@ -19,6 +19,7 @@ class AnimeListItem extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: GestureDetector(
         onTap: () {
+          //Seçilen anime state'e atılıyor.
           context.read<AnimeBloc>().add(SelectAnime(selectedAnime: anime));
           CustomBottomSheet.settingsBottomSheet(
               context, ThemeColors.themeColor, const AnimeDetailWidget());

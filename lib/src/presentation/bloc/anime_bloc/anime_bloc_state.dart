@@ -1,13 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'anime_bloc.dart';
 
-abstract class AnimeState extends Equatable {
+class AnimeState extends Equatable {
   final AnimeModel animeList;
   final Data? selectedAnime;
   const AnimeState(this.animeList, this.selectedAnime);
 
   @override
-  List<Object> get props => [animeList, selectedAnime ?? Object()];
+  List<Object> get props =>
+      [animeList, if (selectedAnime != null) selectedAnime!];
 }
 
 class Loading extends AnimeState {
